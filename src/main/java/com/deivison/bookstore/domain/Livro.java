@@ -1,15 +1,28 @@
 package com.deivison.bookstore.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
-public class Livro {
+public class Livro implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String titulo;
 	private String nome_autor;
 	private String descrição;
 
+	@ManyToOne
+	@JoinColumn(name = "categoria_id")
 	private Categoria cotegoria;
 
 	public Livro() {
